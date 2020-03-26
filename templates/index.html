@@ -76,13 +76,13 @@
         </div>
         <br>
         <div class="form-inline">
-            <input type="submit" class="btn btn-success" value="Get Orbit" form="orbit-form" onclick="requests()">
-{#            <input type="submit" class="btn btn-primary" form="orbit-form">#}
+            <input type="submit" class="btn btn-success" value="Get Orbit" form="orbit-form" onclick="Orbit()">
+            <input type="submit" class="btn btn-primary" value="Plot Orbit" form="orbit-form" onclick="Orbit_plot()">
         </div>
     </form>
     <br><br>
-    <pre id="api" style="color:black; font-size: 20px; font-weight: bold;">
-    </pre>
+    <div id="api" style="color:black; font-size: 20px; font-weight: bold;">
+    </div>
     <script>
         var form = document.querySelector('form');
         form.addEventListener("submit", function(event){

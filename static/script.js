@@ -8,7 +8,7 @@ function getFormData($form){
     return index_form_data;
 }
 
-function jsonify_data()
+function func()
 {
     var array = getFormData($(form));
     var body = array['body'];
@@ -30,20 +30,43 @@ function jsonify_data()
         "value": position_value,
         "unit": position_unit
     };
-    var data = {
+    var final_data = {
         "body": body,
         "position": position,
         "velocity": velocity
     };
-    return JSON.stringify(data);
+
+    return JSON.stringify(final_data);
+
 }
 
-function requests(){
+function Orbit(){
     $.ajax({
-        url: "https://poliastro-api-alcnpgpvvq-uc.a.run.app/orbit",
+        url: "https://poliastro-api.herokuapp.com/orbit",
         type: "POST",
         crossDomain: true,
-        data: jsonify_data(),
+        data: func(),
+        dataType: "json",
+        headers:{"content-type": "application/json"},
+
+        error: function (xhr, status) {
+            alert("Something Went Wrong");
+        }
+    })
+        .done(function(data) {
+            var api = document.getElementById('api');
+            var pre = document.createElement("pre");
+            pre.textContent = JSON.stringify(data,undefined, 4);
+            api.appendChild(pre);
+        });
+}
+
+function Orbit_plot(){
+    $.ajax({
+        url: "https://poliastro-api.herokuapp.com/orbit-plot",
+        type: "POST",
+        crossDomain: true,
+        data: func(),
         dataType: "json",
         headers:{"content-type": "application/json"},
 
@@ -52,8 +75,9 @@ function requests(){
         }
     })
         .done(function( data ) {
-            document.getElementById("api").innerHTML = JSON.stringify(data,undefined, 4);
-
+            graph = document.createElement('div');
+            graph.id = 'orbit-plot';
+            document.body.appendChild(graph);
+            Plotly.newPlot(graph, data.data, data.layout);
         });
 }
-
