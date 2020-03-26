@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>poliastro-prototype</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="../static/script.js"></script>
+
+</head>
+<body>
+<div class="container">
+    <h1 style="font-weight: bold">Orbit from Vectors</h1>
+    <br>
+    <form id="form1">
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="body">Body:</label>
+                <select class="form-control" id="body" name="body">
+                    <option value="Mercury">Mercury</option>
+                    <option value="Venus">Venus</option>
+                    <option value="Earth">Earth</option>
+                    <option value="Mars">Mars</option>
+                    <option value="Jupiter">Jupiter</option>
+                    <option value="Saturn">Saturn</option>
+                    <option value="Uranus">Uranus</option>
+                    <option value="Neptune">Neptune</option>
+                    <option value="Pluto">Pluto</option>
+                    <option value="Sun">Sun</option>
+                    <option value="Moon">Moon</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="position_value">Position:</label>
+                <input type="number" class="form-control" id="position_x" placeholder="position_x" name="position_x">
+                <input type="number" class="form-control" id="position_y" placeholder="position_y" name="position_y">
+                <input type="number" class="form-control" id="position_z" placeholder="position_z" name="position_z">
+            </div>
+        </div>
+        <br>
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="position_unit">Position Unit:</label>
+                <select class="form-control" id="position_unit" name="position_unit">
+                    <option value="km">km</option>
+                    <option value="m">m</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="velocity_value">Velocity:</label>
+                <input type="number" class="form-control" id="velocity_x" placeholder="velocity_x" name="velocity_x">
+                <input type="number" class="form-control" id="velocity_y" placeholder="velocity_y" name="velocity_y">
+                <input type="number" class="form-control" id="velocity_z" placeholder="velocity_z" name="velocity_z">
+
+            </div>
+        </div>
+        <br>
+
+        <div class="form-inline">
+            <div class="form-group">
+                <label for="velocity_unit">Velocity Unit:</label>
+                <select class="form-control" id="velocity_unit" name="velocity_unit">
+                    <option value="km/s">km/s</option>
+                    <option value="m/s">m/s</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="form-inline">
+            <input type="submit" class="btn btn-success" value="Get Orbit" form="orbit-form" onclick="requests()">
+{#            <input type="submit" class="btn btn-primary" form="orbit-form">#}
+        </div>
+    </form>
+    <br><br>
+    <pre id="api" style="color:black; font-size: 20px; font-weight: bold;">
+    </pre>
+    <script>
+        var form = document.querySelector('form');
+        form.addEventListener("submit", function(event){
+            event.preventDefault();
+        })
+    </script>
+</div>
+</body>
+</html>
